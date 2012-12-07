@@ -35,3 +35,5 @@ def sumElegant(maxNum):
 	totalSum -= 15 * (lastTerm * (lastTerm + 1) / 2)
 	
 	print totalSum
+
+sumElegant(999)
