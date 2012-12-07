@@ -15,7 +15,7 @@ def metaAlgo(maxLength):
 		t1 = time.clock()
 		initAlgo(length,length)
 		t2 = time.clock()
-		print "(",round(t2-t1, 5),")"
+		print "[Length: ",length,"] [Time: ",round(t2-t1, 5),"]"
 
 def initAlgo(widthArg, heightArg):	
 	global GRID_WIDTH
