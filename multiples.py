@@ -36,4 +36,15 @@ def sumElegant(maxNum):
 	
 	print totalSum
 
-sumElegant(999)
+#Modularity
+def seriesToMax(multiple,maxNum):
+    return multiple * ((maxNum // multiple) * ((maxNum // multiple) +1 ) / 2)
+
+def sumModular(maxNum):
+    totalSum = 0
+    totalSum += seriesToMax(3,maxNum)
+    totalSum += seriesToMax(5,maxNum)
+    totalSum -= seriesToMax(15,maxNum)
+    print totalSum
+
+sumModular(999)
