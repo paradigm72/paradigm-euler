@@ -42,11 +42,11 @@ def lettersPerTensPlace(tens, ones, appendOnesLetters):
     if tens == 3:
         return 6     #thirty
     if tens == 4:
-        return 6     #fourty
+        return 5     #forty
     if tens == 5:
         return 5     #fifty
     else:
-        return lettersPerOnesPlace(tens) + 2  #<onesplace>ty
+        return (lettersPerOnesPlace(tens) + 2)   #<onesplace>ty
 
 
 
@@ -56,13 +56,21 @@ def lettersPerNumber(number):
     hundreds = number - tens - ones
 
     appendOnesLetters = [True]
-    hLetters = lettersPerOnesPlace(hundreds)
-    tLetters = lettersPerTensPlace(tens,ones,appendOnesLetters)
-    oLetters = lettersPerOnesPlace(ones)
+    hLetters = lettersPerOnesPlace(hundreds // 100)
+    tLetters = lettersPerTensPlace(tens // 10,ones,appendOnesLetters)
+    if appendOnesLetters[0]:
+        oLetters = lettersPerOnesPlace(ones)
+    else:
+        oLetters = 0
+
     if hLetters > 0:
-        hLetters += 10  #hundred and
+        hLetters += 10  #"hundred and"
 
     totalLetters = hLetters + tLetters + oLetters
     print "Letters for number ",number,": ",totalLetters,"."
 
- lettersPerNumber(142)
+
+lettersPerNumber(142)
+print "One hundred and forty-two"
+lettersPerNumber(712)
+print "Seven hundred and twelve"
