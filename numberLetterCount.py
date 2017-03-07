@@ -3,23 +3,23 @@ import math
 
 def lettersPerOnesPlace(number):
     if number == 1:
-        return 3
+        return 3   #one
     if number == 2:
-        return 3
+        return 3   #two
     if number == 3:
-        return 5
+        return 5   #three
     if number == 4:
-        return 4
+        return 4   #four
     if number == 5:
-        return 4
+        return 4   #five
     if number == 6:
-        return 3
+        return 3   #six
     if number == 7:
-        return 5
+        return 5   #seven
     if number == 8:
-        return 5
+        return 5   #eight
     if number == 9:
-        return 4
+        return 4   #nine
     if number == 0:
         return 0   #we never actually say zero
 
@@ -51,6 +51,8 @@ def lettersPerTensPlace(tens, ones, appendOnesLetters):
         return 5     #forty
     if tens == 5:
         return 5     #fifty
+    if tens == 8:
+        return 6     #eighty
     else:
         return (lettersPerOnesPlace(tens) + 2)   #<onesplace>ty
 
