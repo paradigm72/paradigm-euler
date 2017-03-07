@@ -61,7 +61,7 @@ def lettersPerNumber(number):
     tens = (number - ones) % 100
     hundreds = number - tens - ones
 
-    if number == 10:
+    if number == 101:
         junk = 1
 
     appendOnesLetters = [True]
@@ -81,7 +81,10 @@ def lettersPerNumber(number):
         oLetters = 0
 
     if hLetters > 0:
-        hLetters += 10  #"hundred and"
+        if tLetters > 0 or oLetters > 0:
+            hLetters += 10  #"hundred and"
+        else:
+            hLetters += 7  #"hundred
 
     totalLetters = hLetters + tLetters + oLetters
     return totalLetters
@@ -93,6 +96,7 @@ def lettersForAllNumbersUpTo(finalNumber):
         runningTotal += lettersPerNumber(i)
         print i," has ",lettersPerNumber(i)," letters."
 
-    print "Total number of letters up to ",finalNumber,": ",runningTotal
+    print "1000 has  11  letters."
+    print "Total number of letters up to ",finalNumber,": ",runningTotal+11
 
 lettersForAllNumbersUpTo(1000)
