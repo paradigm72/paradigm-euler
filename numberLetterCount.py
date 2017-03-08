@@ -41,8 +41,11 @@ def lettersPerTensPlace(tens, ones, appendOnesLetters):
         if ones == 0:
             appendOnesLetters[0] = False
             return 3     #ten
+        if ones == 8:
+            appendOnesLetters[0] = False
+            return 8    #eighteen
         else:
-            return 4     # "teen"
+            return 4     #*"teen"
     if tens == 2:
         return 6     #twenty
     if tens == 3:
