@@ -1,5 +1,3 @@
-
-
 def buildPyramidArray(pyramidArray):
     pyramidArray[0] =                                [75]
     pyramidArray[1] =                              [95, 64]
@@ -35,3 +33,33 @@ def isValidStep(pyramidArray,startX,startY,endX,endY):
     return True   #otherwise, it's a valid step
 
 
+def TryAllPaths(pyramidArray,highestTotalSoFar,runningTotal):
+    stepDown(pyramidArray,highestTotalSoFar,runningTotal,0,0)
+
+
+def stepDown(pyramidArray,highestTotalSoFar,runningTotal,startX,startY):
+
+    # Step down to the left (actually x stays the same here)
+    nextX = startX
+    nextY = startY + 1
+    if isValidStep(pyramidArray,startX,startY,nextX,nextY) == True:
+        steppedDown = True
+        runningTotal += pyramidArray[nextX][nextY]
+        stepDown(pyramidArray,runningTotal,nextX,nextY)
+        # unwind
+        runningTotal -= pyramidArray[nextX][nextY]
+
+    # Step down to the right (x increments by one)
+    nextX = startX + 1
+    nextY = startY + 1
+    if isValidStep(pyramidArray,startX,startY,nextX,nextY) == True:
+        steppedDown = True
+        runningTotal += pyramidArray[nextX][nextX]
+        stepDown(pyramidArray,runningTotal,nextX,nextY)
+        # unwind
+        runningTotal -= pyramidArray[nextX][nextY]
+
+    # If we hit a boundary condition (bottom of the pyramid), terminate
+    if steppedDown == False:
+        if runningTotal > highestTotalSoFar:
+            highestTotalSoFar = runningTotal
