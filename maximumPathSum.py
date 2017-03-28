@@ -38,11 +38,12 @@ def isValidStep(pyramidArray,startX,startY,endX,endY):
 
 
 def tryAllPaths(pyramidArray,highestTotalSoFar,runningTotal):
-    stepDown(pyramidArray,highestTotalSoFar,runningTotal,0,0)
+    pathSoFar = [[]]
+    stepDown(pyramidArray,highestTotalSoFar,runningTotal,pathSoFar,0,0)
     print "At the end, highest total was: ",highestTotalSoFar[0]
 
 
-def stepDown(pyramidArray,highestTotalSoFar,runningTotal,startX,startY):
+def stepDown(pyramidArray,highestTotalSoFar,runningTotal,pathSoFar,startX,startY):
 
     # Step down to the left (actually x stays the same here)
     nextX = startX
@@ -50,9 +51,11 @@ def stepDown(pyramidArray,highestTotalSoFar,runningTotal,startX,startY):
     if isValidStep(pyramidArray,startX,startY,nextX,nextY):
         steppedDown = True
         runningTotal[0] += pyramidArray[nextY][nextX]
-        stepDown(pyramidArray,highestTotalSoFar,runningTotal,nextX,nextY)
+        pathSoFar[0].append(pyramidArray[nextY][nextX])
+        stepDown(pyramidArray,highestTotalSoFar,runningTotal,pathSoFar,nextX,nextY)
         # unwind
         runningTotal[0] -= pyramidArray[nextY][nextX]
+        pathSoFar[0].pop
 
     # Step down to the right (x increments by one)
     nextX = startX + 1
@@ -60,12 +63,14 @@ def stepDown(pyramidArray,highestTotalSoFar,runningTotal,startX,startY):
     if isValidStep(pyramidArray,startX,startY,nextX,nextY):
         steppedDown = True
         runningTotal[0] += pyramidArray[nextY][nextX]
-        stepDown(pyramidArray,highestTotalSoFar,runningTotal,nextX,nextY)
+        pathSoFar[0].append(pyramidArray[nextY][nextX])
+        stepDown(pyramidArray,highestTotalSoFar,runningTotal,pathSoFar,nextX,nextY)
         # unwind
         runningTotal[0] -= pyramidArray[nextY][nextX]
+        pathSoFar[0].pop
 
     # If we hit a boundary condition (bottom of the pyramid), terminate
-    print "Terminated a path with total: ",runningTotal[0]
+    print "Terminated a path with total: ",runningTotal[0],", length: ",len(pathSoFar[0])
     if runningTotal[0] > highestTotalSoFar[0]:
         highestTotalSoFar[0] = runningTotal[0]
 
