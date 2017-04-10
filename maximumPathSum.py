@@ -38,7 +38,7 @@ def isValidStep(pyramidArray,startX,startY,endX,endY):
 
 
 def tryAllPaths(pyramidArray,highestTotalSoFar,runningTotal):
-    pathSoFar = [[]]
+    pathSoFar = [[75]]
     stepDown(pyramidArray,highestTotalSoFar,runningTotal,pathSoFar,0,0)
     print "At the end, highest total was: ",highestTotalSoFar[0]
 
@@ -55,7 +55,7 @@ def stepDown(pyramidArray,highestTotalSoFar,runningTotal,pathSoFar,startX,startY
         stepDown(pyramidArray,highestTotalSoFar,runningTotal,pathSoFar,nextX,nextY)
         # unwind
         runningTotal[0] -= pyramidArray[nextY][nextX]
-        pathSoFar[0].pop
+        pathSoFar[0].pop()
 
     # Step down to the right (x increments by one)
     nextX = startX + 1
@@ -67,15 +67,17 @@ def stepDown(pyramidArray,highestTotalSoFar,runningTotal,pathSoFar,startX,startY
         stepDown(pyramidArray,highestTotalSoFar,runningTotal,pathSoFar,nextX,nextY)
         # unwind
         runningTotal[0] -= pyramidArray[nextY][nextX]
-        pathSoFar[0].pop
+        pathSoFar[0].pop()
 
     # If we hit a boundary condition (bottom of the pyramid), terminate
-    print "Terminated a path with total: ",runningTotal[0],", length: ",len(pathSoFar[0])
+    print "Terminated path #",numberOfPaths[0]," with total: ",runningTotal[0],", length: ",len(pathSoFar[0])
+    numberOfPaths[0] += 1
     if runningTotal[0] > highestTotalSoFar[0]:
         highestTotalSoFar[0] = runningTotal[0]
 
 myPyramidArray = [0 for x in range(15)]
 highestTotalSoFar = [-1]
-runningTotal = [-1]
+runningTotal = [75]
+numberOfPaths = [0]
 buildPyramidArray(myPyramidArray)
 tryAllPaths(myPyramidArray,highestTotalSoFar,runningTotal)
