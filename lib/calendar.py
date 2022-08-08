@@ -17,3 +17,17 @@ def daysInMonth(month, year):
         return 28
     return 30
 
+
+def getFirstDaysInMonth(year):
+    dayNumInMonth = 0
+    monthNum = 1
+    dayNums = [1]   # start with Jan. 1 as a first day of a month
+    daysInYear = 366 if isLeapYear(year) else 365
+
+    for dayNumInYear in range(1, daysInYear):
+        dayNumInMonth = dayNumInMonth + 1
+        if dayNumInMonth > daysInMonth(monthNum, year):
+            monthNum = monthNum + 1
+            dayNumInMonth = 1
+            dayNums.append(dayNumInYear)
+    return dayNums
