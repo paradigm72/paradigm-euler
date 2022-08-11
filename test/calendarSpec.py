@@ -17,7 +17,9 @@ class CalendarTests(unittest.TestCase):
         self.assertEqual(calendar.daysInMonth(4, 1981), 30)
 
     def testFirstDayDayNums(self):
+        self.assertEqual(calendar.getFirstDaysInMonth(1972), [1, 32, 61, 92, 122, 153, 183, 214, 245, 275, 306, 336])
         self.assertEqual(calendar.getFirstDaysInMonth(1974), [1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335])
+        self.assertEqual(calendar.getFirstDaysInMonth(1975), [1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335])
 
 
 if __name__ == '__main__':
