@@ -2,7 +2,7 @@ from lib import calendar
 
 
 def loopAllDaysInCentury():
-    dayInWeek = 1
+    dayInWeek = 2  # for 1901, the first is Tuesday (problem def. is misleading)
     firstSundays = 0
     for year in range(1901, 2001):
         firstDaysInMonth = calendar.getFirstDaysInMonth(year)
